@@ -146,4 +146,64 @@ a {
 }
 
 /* ----- Reading Books ----- */
+.cards {
+  padding: 0.5rem;
+}
+
+.card {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  grid-template-columns: 15px 60% 35%;
+}
+
+.card__status {
+  height: 100%;
+}
+
+.card__status--reading {
+  background-color: var(--l-brown);
+}
+
+.card__status--finished {
+  background-color: var(--d-brown);
+}
+
+.card__detail {
+  padding: 0.5rem 0;
+}
+
+.card__title {
+  font-size: 1.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.card__author {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  color: grey;
+}
+
+.card__year {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: grey;
+}
+
+.card__manager {
+  padding: 1rem;
+}
+
+.card__manager .icon {
+  transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+.card__manager .icon:hover {
+  transform: scale(1.1);
+  transition-duration: 0.3s;
+}
+
+.card__manager .icon-delete {
+  color: red;
+}
+
 /* ----- Finished Books ----- */
