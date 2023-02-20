@@ -12,6 +12,11 @@ const inputBookYear = document.getElementById("input_book_year")
 const inputIsCompleted = document.getElementById("is_completed")
 const addButton = document.getElementById("add_button")
 
+const readingBooks = document.getElementById("reading-books")
+const finishedBooks = document.getElementById("finished-books")
+
+const addBookTitle = document.getElementById("add-book-title")
+
 // Get data onload
 window.addEventListener("load", function () {
   showData()
@@ -72,4 +77,100 @@ function createBook(book) {
   let bookList = getData()
   bookList.unshift(book)
   localStorage.setItem(my_bookshelf_storage, JSON.stringify(bookList))
+}
+
+// Show data from local storage
+function showData() {
+  const bookList = getData()
+  readingBooks.innerHTML = ""
+  finishedBooks.innerHTML = ""
+
+  bookList.forEach(book => {
+    if (book.isCompleted) {
+      let ele = `
+        <div class="d-grid card space-between">
+          <div class="card__status card__status--finished"></div>
+          <div class="card__detail">
+            <p class="card__title">${book.title}</p>
+            <p class="card__author">${book.author}</p>
+            <p class="card__year">${book.year}</p>
+          </div>
+          <div class="card__manager d-flex jc-end">
+            <span 
+              title="read again" 
+              class="icon material-symbols-outlined"
+              onclick="changeBookStatus(${book.id}, 'You want to read this book again?')"
+            >
+              change_circle
+            </span>
+            <span 
+              title="edit" 
+              class="icon material-symbols-outlined"
+              onclick="updateBook(${book.id})"
+            >
+              edit_note
+            </span>
+            <span 
+              title="delete" 
+              class="icon icon-delete material-symbols-outlined"
+              onclick="deleteBook(${book.id})"
+            >
+              delete_forever
+            </span>
+          </div>
+        </div>
+      `
+      finishedBooks.innerHTML += ele
+    } else {
+      let ele = `
+        <div class="d-grid card space-between">
+          <div class="card__status card__status--reading"></div>
+          <div class="card__detail">
+            <p class="card__title">${book.title}</p>
+            <p class="card__author">${book.author}</p>
+            <p class="card__year">${book.year}</p>
+          </div>
+          <div class="card__manager d-flex jc-end">
+            <span 
+              title="finished" 
+              class="icon material-symbols-outlined"
+              onclick="changeBookStatus(${book.id}, 'Are you finish this book?')"
+            >
+              check_box
+            </span>
+            <span 
+              title="edit" 
+              class="icon material-symbols-outlined"
+              onclick="updateBook(${book.id})"
+            >
+              edit_note
+            </span>
+            <span 
+              title="delete" 
+              class="icon icon-delete material-symbols-outlined"
+              onclick="deleteBook(${book.id})"
+            >
+              delete_forever
+            </span>
+          </div>
+        </div>
+      `
+      readingBooks.innerHTML += ele
+    }
+  })
+}
+
+// Update book
+function updateBook(id) {
+  let updatedBook = getData().filter(book => book.id === id)[0]
+  console.log(updatedBook)
+
+  addBookTitle.innerHTML = "Edit Book"
+  addButton.innerHTML = "Edit"
+
+  addButton.value = updatedBook.id
+  inputBookTitle.value = updatedBook.title
+  inputBookAuthor.value = updatedBook.author
+  inputBookYear.value = updatedBook.year
+  updatedBook.isCompleted ? inputIsCompleted.checked = true : inputIsCompleted.checked = false
 }
