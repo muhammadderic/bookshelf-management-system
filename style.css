@@ -137,5 +137,13 @@ a {
 }
 
 /* ----- Add Book ----- */
+.input_error {
+  color: red;
+}
+
+.display_error {
+  display: none;
+}
+
 /* ----- Reading Books ----- */
 /* ----- Finished Books ----- */

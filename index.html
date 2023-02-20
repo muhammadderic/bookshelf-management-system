@@ -51,6 +51,31 @@
   </section>
 
   <!-- ===== ADD BOOK ===== -->
+  <section id="add-book" class="container">
+    <p id="add-book-title" class="section__title">Add Book</p>
+    <form>
+      <div class="form__field">
+        <p id="input_error_title" class="input_error display_error">*Input required</p>
+        <input id="input_book_title" type="text" class="form__input" placeholder="*Book's title">
+      </div>
+      <div class="form__field">
+        <p id="input_error_author" class="input_error display_error">*Author required</p>
+        <input id="input_book_author" type="text" class="form__input" placeholder="*Book's author">
+      </div>
+      <div class="form__field">
+        <p id="input_error_year" class="input_error display_error">*Year required</p>
+        <input id="input_book_year" type="number" class="form__input" placeholder="*Book's year">
+      </div>
+      <div class="form__field form__check">
+        <input type="checkbox" id="is_completed">
+        <label>Completed</label>
+      </div>
+      <div class="form__button d-flex jc-end">
+        <button id="add_button" class="btn">Add</button>
+      </div>
+    </form>
+  </section>
+
   <!-- ===== READING BOOKS ===== -->
   <!-- ===== FINISHED BOOKS ===== -->
   <script src="./script.js"></script>
