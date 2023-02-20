@@ -1,8 +1,86 @@
 /* ===== VARIABLES ===== */
+* {
+  --d-brown: #594545;
+  --m-brown: #815B5B;
+  --l-brown: #9E7676;
+  --cream: #FFF8EA;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--d-brown);
+  box-sizing: border-box;
+}
+
 /* ===== ELEMENTS ===== */
+a {
+  text-decoration: none;
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: var(--cream);
+  color: var(--d-brown);
+  border: none;
+  border-radius: 24px;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+
+.btn:hover {
+  background: var(--l-brown);
+  color: var(--cream);
+  transition-duration: 0.3s;
+}
+
 /* ===== BEHAVIOURS ===== */
+.d-flex {
+  display: flex;
+}
+
+.d-grid {
+  display: grid;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.jc-end {
+  justify-content: flex-end;
+}
+
+.ai-center {
+  align-items: center;
+}
+
 /* ===== CLASSES ===== */
 /* ----- Header ----- */
+#header {
+  height: 4rem;
+  padding: 0 2rem;
+  background-color: var(--cream);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.header__logo {
+  height: 3rem;
+}
+
+.header__menu {
+  width: 50%;
+}
+
+.header__link {
+  padding-bottom: 0.2rem;
+}
+
+.header__link:hover {
+  border-bottom: 2px solid var(--m-brown);
+}
+
 /* ----- Search ----- */
 /* ----- Add Book ----- */
 /* ----- Reading Books ----- */
