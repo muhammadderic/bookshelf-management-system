@@ -35,6 +35,14 @@ a {
   transition-duration: 0.3s;
 }
 
+.container {
+  width: 500px;
+  margin: 0.5rem auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
 /* ===== BEHAVIOURS ===== */
 .d-flex {
   display: flex;
@@ -82,6 +90,52 @@ a {
 }
 
 /* ----- Search ----- */
+.section__title {
+  margin: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.form__field {
+  width: 100%;
+}
+
+.form__check {
+  margin: 0 1rem;
+}
+
+.form__input {
+  height: 2.5rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.form__button {
+  margin: 0.5rem;
+}
+
+.status-book {
+  padding: 0.5rem 1rem;
+  color: var(--cream);
+  border-radius: 0.5rem;
+}
+
+#search-result {
+  margin: 1rem 0;
+}
+
+.status-reading {
+  background-color: var(--l-brown);
+}
+
+.status-finished {
+  background-color: var(--d-brown);
+}
+
 /* ----- Add Book ----- */
 /* ----- Reading Books ----- */
 /* ----- Finished Books ----- */
