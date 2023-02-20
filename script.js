@@ -17,6 +17,10 @@ const finishedBooks = document.getElementById("finished-books")
 
 const addBookTitle = document.getElementById("add-book-title")
 
+const inputSearch = document.getElementById("input-search")
+const searchButton = document.getElementById("search-button")
+const searchResult = document.getElementById("search-result")
+
 // Get data onload
 window.addEventListener("load", function () {
   showData()
@@ -27,7 +31,24 @@ addButton.addEventListener("click", function (e) {
   e.preventDefault();
 
   if (addButton.value) {
-    console.log(addButton.value)
+    const id = parseInt(addButton.value)
+    const newBook = {
+      id: id,
+      title: inputBookTitle.value,
+      author: inputBookAuthor.value,
+      year: inputBookYear.value,
+      isCompleted: inputIsCompleted.checked,
+    }
+
+    let bookList = getData().filter(book => book.id !== id)
+    bookList.unshift(newBook)
+    localStorage.setItem(my_bookshelf_storage, JSON.stringify(bookList))
+
+    inputBookTitle.value = ""
+    inputBookAuthor.value = ""
+    inputBookYear.value = ""
+    inputIsCompleted.checked = false
+    location.reload()
   } else {
     let inputCheckValue = true;
 
@@ -174,3 +195,62 @@ function updateBook(id) {
   inputBookYear.value = updatedBook.year
   updatedBook.isCompleted ? inputIsCompleted.checked = true : inputIsCompleted.checked = false
 }
+
+// Delete book
+function deleteBook(id) {
+  const confirmation = confirm("You want delete this book?")
+  if (confirmation) {
+    let bookList = getData().filter(book => book.id !== id)
+    localStorage.setItem(my_bookshelf_storage, JSON.stringify(bookList))
+    location.reload()
+  }
+}
+
+// Change book status
+function changeBookStatus(id, text) {
+  const confirmation = confirm(text)
+  if (confirmation) {
+    let changedBook = getData().filter(book => book.id === id)[0]
+
+    const newBook = {
+      ...changedBook,
+      isCompleted: !changedBook.isCompleted,
+    }
+
+    let bookList = getData().filter(book => book.id !== id)
+    bookList.unshift(newBook)
+    localStorage.setItem(my_bookshelf_storage, JSON.stringify(bookList))
+    location.reload()
+  }
+}
+
+// Search input title
+searchButton.addEventListener("click", function (e) {
+  e.preventDefault()
+  searchResult.innerHTML = ""
+  let searchCheck = true
+
+  let bookList = getData()
+  bookList.forEach(book => {
+    if (book.title.toLowerCase() === inputSearch.value.toLowerCase()) {
+      let ele = `
+        <div class="d-grid card space-between">
+          <div class="card__status card__status--reading"></div>
+          <div class="card__detail">
+            <p class="card__title">${book.title}</p>
+            <p class="card__author">${book.author}</p>
+            <p class="card__year">${book.year}</p>
+          </div>
+          <div class="card__status-text d-flex jc-center ai-center">
+            <p class="status-book ${book.isCompleted ? 'status-finished' : 'status-reading'}">${book.isCompleted ? "Finished" : "Reading"}</p>
+          </div>
+        </div>
+      `
+      searchResult.innerHTML += ele
+      searchCheck = false
+    }
+  })
+  if (searchCheck) {
+    searchResult.innerHTML = "not found"
+  }
+})
